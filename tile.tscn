@@ -1,0 +1,56 @@
+[gd_scene load_steps=16 format=3 uid="uid://cu4twtupuyy8f"]
+
+[ext_resource type="Texture2D" uid="uid://4bm78dlxv1q7" path="res://sprites/stone.png" id="1_11ts1"]
+[ext_resource type="Script" path="res://tile.gd" id="2_pgoej"]
+[ext_resource type="Texture2D" uid="uid://crn8rsw2mapli" path="res://sprites/floor.png" id="3_1tds6"]
+[ext_resource type="Texture2D" uid="uid://dk8x2hd7ymnnh" path="res://sprites/coal.png" id="4_ixq8m"]
+[ext_resource type="Texture2D" uid="uid://ci3l2r5qaek8x" path="res://sprites/iron.png" id="5_0522o"]
+[ext_resource type="Texture2D" uid="uid://bm2as5bt0exnm" path="res://sprites/copper.png" id="6_cdu7b"]
+[ext_resource type="Texture2D" uid="uid://dctca0wowq18o" path="res://sprites/silver.png" id="7_3jvfv"]
+[ext_resource type="Texture2D" uid="uid://cqeynv4ktus1b" path="res://sprites/gold.png" id="8_r2ywj"]
+[ext_resource type="Texture2D" uid="uid://y0no80v8tn7y" path="res://sprites/diamond.png" id="9_h06lb"]
+[ext_resource type="Texture2D" uid="uid://bbfqe5ejav10g" path="res://sprites/cracks.png" id="10_we8lb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2ew2"]
+atlas = ExtResource("10_we8lb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl3jm"]
+atlas = ExtResource("10_we8lb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk1at"]
+atlas = ExtResource("10_we8lb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42bau"]
+atlas = ExtResource("10_we8lb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hf8tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2ew2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl3jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk1at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42bau")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Tile" type="Sprite2D"]
+texture = ExtResource("1_11ts1")
+script = ExtResource("2_pgoej")
+stone_texture = Array[Texture2D]([ExtResource("3_1tds6"), ExtResource("1_11ts1"), ExtResource("4_ixq8m"), ExtResource("5_0522o"), ExtResource("6_cdu7b"), ExtResource("7_3jvfv"), ExtResource("8_r2ywj"), ExtResource("9_h06lb")])
+
+[node name="Cracks" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hf8tf")

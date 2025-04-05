@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://bigt30trppiiy"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1u6gy"]
+[ext_resource type="PackedScene" uid="uid://b63fjym07lmg1" path="res://mine.tscn" id="2_6i2m4"]
+[ext_resource type="FontFile" uid="uid://82oetmsbpfor" path="res://consola.ttf" id="3_uem46"]
+[ext_resource type="Script" path="res://money_label.gd" id="4_xhvma"]
+[ext_resource type="Script" path="res://energy_label.gd" id="5_gpcq7"]
+[ext_resource type="Script" path="res://depth_label.gd" id="5_ia8vo"]
+
+[sub_resource type="Theme" id="Theme_s3elf"]
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("3_uem46")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1u6gy")
+mine_scene = ExtResource("2_6i2m4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 128)
+offset = Vector2(100, 0)
+zoom = Vector2(2, 2)
+
+[node name="Panel" type="Panel" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -52.5
+offset_right = 87.5
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 3.5
+offset_top = 71.5
+offset_right = 96.5
+offset_bottom = 102.5
+text = "Enter Mine"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 288.0
+offset_top = -16.0
+offset_right = 438.0
+offset_bottom = 272.0
+
+[node name="Money" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 30.0
+theme = SubResource("Theme_s3elf")
+text = "$ 0"
+script = ExtResource("4_xhvma")
+
+[node name="Depth" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -28.0
+offset_right = 95.0
+offset_bottom = -5.0
+grow_vertical = 0
+text = "Depth: 10m
+"
+script = ExtResource("5_ia8vo")
+
+[node name="Energy" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -60.0
+offset_right = 95.0
+offset_bottom = -37.0
+grow_vertical = 0
+text = "Energy: 10
+"
+script = ExtResource("5_gpcq7")

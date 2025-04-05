@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://b63fjym07lmg1"]
+
+[ext_resource type="Script" path="res://mine.gd" id="1_4c30q"]
+[ext_resource type="PackedScene" uid="uid://cu4twtupuyy8f" path="res://tile.tscn" id="2_v5yb8"]
+[ext_resource type="Texture2D" uid="uid://c0uy7mtd2axa3" path="res://sprites/miner.png" id="3_xbkxy"]
+[ext_resource type="Script" path="res://miner.gd" id="4_sal3m"]
+
+[node name="Mine" type="Node2D"]
+script = ExtResource("1_4c30q")
+tile_scene = ExtResource("2_v5yb8")
+
+[node name="Miner" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(128, 128)
+texture = ExtResource("3_xbkxy")
+script = ExtResource("4_sal3m")
