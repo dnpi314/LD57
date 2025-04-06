@@ -12,11 +12,11 @@ func set_stats (d : float, e : float, me : float) -> void:
 	energy = e
 	mining_energy = me
 
-func action (type : int) -> bool:
+func action (type : int, level : int) -> bool:
 	if type == 0:
-		energy -= walking_energy
+		energy -= walking_energy * level
 	elif type == 1:
-		energy -= mining_energy
+		energy -= mining_energy * level
 	
 	if energy <= 0:
 		return true

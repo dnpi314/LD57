@@ -3,10 +3,9 @@ extends Label
 var main : Main
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	main = get_parent().get_parent()
+	main = get_parent().get_parent().get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var format = "Energy: %.1f"
-	text = format % main.current_energy
+	text = main.welcome_text

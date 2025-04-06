@@ -8,5 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var format = "Energy: %.1f"
-	text = format % main.current_energy
+	text = "Luck: " + str(main.player_luck)

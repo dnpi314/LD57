@@ -43,7 +43,7 @@ func create_mine (chance : float, ores : int, durability : float, value : float)
 			var tile : Tile = tile_scene.instantiate()
 			add_child(tile)
 			tile.transform.origin = Vector2(x * tile_size, y * tile_size)
-			tile.initialize(base_health * ore_type, ore_type)
+			tile.initialize(base_health, ore_type)
 			tiles[index] = tile
 	
 	tiles[player_position.y * size_x + player_position.x].initialize(0, 0)
@@ -90,13 +90,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	
 	var direction = -1
 	
-	if event.is_action_pressed("up"):
+	if event.is_action("up") && !event.is_action_released("up"):
 		direction = 0
-	if event.is_action_pressed("right"):
+	if event.is_action("right") && !event.is_action_released("right"):
 		direction = 1
-	if event.is_action_pressed("down"):
+	if event.is_action("down") && !event.is_action_released("down"):
 		direction = 2
-	if event.is_action_pressed("left"):
+	if event.is_action("left") && !event.is_action_released("left"):
 		direction = 3
 		
 	if direction == -1:
@@ -108,11 +108,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if check_tile(tile_index):
 		player_position = get_position_in_direction(direction)
 		player.transform.origin = player_position * tile_size
-		if player.action(0):
+		if player.action(0, main.current_level):
 			main.die()
 	else:
 		if tiles[tile_index].damage(player.damage):
 			var money = ore_values[tiles[tile_index].ore] * money_multiplier
 			main.money += money
-		if player.action(1):
+			tiles_mined += 1
+			if tiles_mined == target_tiles_mined:
+				main.clear()
+				return
+		if player.action(1, main.current_level):
 			main.die()
